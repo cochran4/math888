@@ -14,7 +14,7 @@ diff  = 0;
 % Focus on those who quit smoking
 ix = find( T.qsmk == 1 )';
 
-% Loop through focual group
+% Loop through focal group
 for i = ix
     
     % Find possible matches

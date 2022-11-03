@@ -4,6 +4,9 @@
 % Load data
 T = readtable('NHEFS.xls');
 
+% Number to match
+k = 8;
+
 % Remove missing data
 T(isnan(T.wt82_71),:) = [];
 

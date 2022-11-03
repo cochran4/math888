@@ -7,10 +7,9 @@ T = readtable('NHEFS.xls');
 % Remove missing data
 T(isnan(T.wt82_71),:) = [];
 
-% Calculus sample covariance matrix
+% Calculate sample covariance matrix and center X
 X = [T.sex,T.education,T.age];
-S = mean( X.*reshape(X,height(T),1,3) );
-S = reshape(S,3,3);
+S = cov(X);
 
 % Initialize
 count = 0;
@@ -24,7 +23,7 @@ ix0 = find( T.qsmk == 0 )';
 for i = ix
     
     % Find best match
-    [~,j] = min( X(i,:)*(S\(X(ix0,:)')) );
+    [~,j] = min( sum( (X(i,:)-X(ix0,:)).*( (S\(X(i,:)'-X(ix0,:)'))' ), 2 ) );
     
     % Add difference in outcomes to sum
     diff = diff + (T.wt82_71(i) - T.wt82_71(ix0(j)));

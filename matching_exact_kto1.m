@@ -10,6 +10,7 @@ T(isnan(T.wt82_71),:) = [];
 % Initialize
 count = 0;
 diff  = 0;
+k     = 8;
 
 % Focus on those who quit smoking
 ix = find( T.qsmk == 1 )';
