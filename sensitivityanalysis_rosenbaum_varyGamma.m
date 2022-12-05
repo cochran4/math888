@@ -1,0 +1,20 @@
+% Sensitivity analysis Rosenbaum 
+
+
+for m=1:21
+    Gamma = 1 + (m-1)/80; 
+    sensitivityanalysis_rosenbaum; 
+    p(m,:) = [Gamma,pvalue1,pvalue,pvalue2]; 
+end
+
+PrettyFig
+Colors
+hold on
+plot(p(:,1),p(:,2),'Color',clr(2,:),'LineWidth',1.5)
+plot(p(:,1),p(:,3),'Color',clr(3,:),'LineWidth',1.5)
+plot(p(:,1),p(:,4),'Color',clr(4,:),'LineWidth',1.5)
+plot(p(:,1),p(:,4)*0+0.05,'--','Color',clr(1,:),'LineWidth',1.5)
+xlabel('\Gamma','FontWeight','bold')
+ylabel('p-value','FontWeight','bold')
+legend({'worst','actual','best'},'Location','southeast')
+print('sensitivityanalysis_rosenbaum','-dpng','-r1000')
